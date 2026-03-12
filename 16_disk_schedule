@@ -17,6 +17,22 @@ void sort(int a[], int n)
             }
 }
 
+void FIFO(int req[], int head)
+{
+    int total=0;
+
+    printf("\nFIFO Order:\n%d", head);
+
+    for(int i=0;i<N;i++)
+    {
+        total += abs(head - req[i]);
+        head = req[i];
+        printf(" -> %d", head);
+    }
+
+    printf("\nTotal Head Movement = %d\n", total);
+}
+
 void SSTF(int req[], int head)
 {
     int visited[N]={0};
@@ -103,12 +119,12 @@ void CSCAN(int req[], int head)
         printf(" -> %d", head);
     }
 
-    total+=abs(head, MAX-1);
-    head=0;
+    total += abs(head - (MAX-1));
+    head = 0;
 
     printf(" -> %d -> %d", MAX-1, head);
 
-    total+=MAX-1;
+    total += MAX-1;
 
     for(int i=0;i<pos;i++)
     {
@@ -143,6 +159,7 @@ int main(int argc, char *argv[])
 
     printf("\nInitial Head = %d\n",head);
 
+    FIFO(req,head);
     SSTF(req,head);
     LOOK(req,head);
     CSCAN(req,head);
